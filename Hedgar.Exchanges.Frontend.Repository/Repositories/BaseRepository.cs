@@ -90,7 +90,7 @@ namespace Hedgar.Exchanges.Frontend.Repository.Repositories
 
         public void Savechanges()
         {
-            this._context.SaveChanges();
+                this._context.SaveChanges();           
         }
         public void Dispose()
         {

@@ -10,7 +10,7 @@ namespace Hedgar.Exchanges.Frontend.Repository.Context.Configuration
     public abstract class BaseConfiguration<T> : EntityTypeConfiguration<T>
          where T : class
     {
-        public BaseConfiguration()
+        protected BaseConfiguration()
         {
             ConfigurateTableName();
             ConfiguratePK();

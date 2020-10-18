@@ -8,12 +8,12 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 {
     public class BaseMVCController : Controller
     {
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            base.OnActionExecuting(filterContext);
+        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    base.OnActionExecuting(filterContext);
 
-            if(!filterContext.HttpContext.User.Identity.IsAuthenticated)
-                filterContext.Result =  RedirectToAction("Login", "Home");
-        }
+        //    if(!filterContext.HttpContext.User.Identity.IsAuthenticated)
+        //        filterContext.Result =  RedirectToAction("Login", "Home");
+        //}
     }
 }

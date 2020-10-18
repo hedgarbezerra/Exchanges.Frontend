@@ -6,11 +6,21 @@ using System.Web.Mvc;
 
 namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseMVCController
     {
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                throw new Exception();
+                return View();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
         }
 
         public ActionResult About()

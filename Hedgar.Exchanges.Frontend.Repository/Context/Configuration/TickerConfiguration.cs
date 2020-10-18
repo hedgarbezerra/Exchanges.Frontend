@@ -7,33 +7,39 @@ using System.Threading.Tasks;
 
 namespace Hedgar.Exchanges.Frontend.Repository.Context.Configuration
 {
-    public class ExampleConfiguration : BaseConfiguration<ExampleClass>
+    public class TickerConfiguration : BaseConfiguration<Ticker>
     {
         protected override void ConfigurateFields()
         {
-            //Defines all fields and their properties in database
-
-            Property(x => x.Id)
-                .HasColumnName("Column name")
-                .HasColumnType("int")
+            Property(p => p.Id)
+                .HasColumnName("ID")
+                .HasColumnType("INT")
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            Property(p => p.TickerId)
+                .HasColumnName("TICKER_ID")
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(255);
+
+            Property(p => p.Name)
+                .HasColumnName("TICKER_NAME")
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(255);
+
         }
 
         protected override void ConfigurateFK()
         {
-            //Defines foreign keys
         }
 
         protected override void ConfiguratePK()
         {
-            //Defines table primary key
-            HasKey(x => x.Id);
+            HasKey(p => p.Id);
         }
 
         protected override void ConfigurateTableName()
         {
-            //Table name
-            ToTable("table example");
+            ToTable("TB_TICKERS");
         }
     }
 }

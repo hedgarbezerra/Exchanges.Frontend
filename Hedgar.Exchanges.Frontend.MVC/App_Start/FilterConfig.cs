@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Hedgar.Exchanges.Frontend.MVC.Models;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Hedgar.Exchanges.Frontend.MVC
@@ -8,6 +9,7 @@ namespace Hedgar.Exchanges.Frontend.MVC
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new CustomExceptionHandler());
         }
     }
 }
