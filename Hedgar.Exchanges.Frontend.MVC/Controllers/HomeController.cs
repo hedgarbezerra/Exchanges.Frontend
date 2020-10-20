@@ -3,16 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 {
+    //[Authorize]
     public class HomeController : BaseMVCController
     {
         public ActionResult Index()
         {
             try
             {
-                throw new Exception();
+                return View();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }           
+        }
+
+        public ActionResult Exchanges()
+        {
+            try
+            {
                 return View();
             }
             catch (Exception ex)
@@ -20,21 +34,34 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 
                 throw ex;
             }
-           
         }
 
-        public ActionResult About()
+        [AllowAnonymous]
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
 
             return View();
         }
 
-        public ActionResult Contact()
+        [AllowAnonymous]
+        public ActionResult Register()
         {
-            ViewBag.Message = "Your contact page.";
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
 
             return View();
+        }
+
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            RemoveCookies();
+
+            return RedirectToAction("Login");
         }
     }
 }

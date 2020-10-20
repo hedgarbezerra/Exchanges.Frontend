@@ -13,7 +13,6 @@ namespace Hedgar.Exchanges.Frontend.Domain.Models
         public string ExceptionUrl { get; set; }
         public string ExceptionType { get; set; }
         public string ExceptionSource { get; set; }
-        public string Parameters { get; set; }
         public DateTime DtHrErro { get; set; }
     }
 }

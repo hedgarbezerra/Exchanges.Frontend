@@ -35,11 +35,6 @@ namespace Hedgar.Exchanges.Frontend.Repository.Context.Configuration
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255);
 
-            Property(p => p.Parameters)
-                .HasColumnName("EXCEPTION_PARAM")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(255);
-
             Property(p => p.DtHrErro)
                 .HasColumnName("EXCEPTION_DTHR")
                 .HasColumnType("DATETIME")

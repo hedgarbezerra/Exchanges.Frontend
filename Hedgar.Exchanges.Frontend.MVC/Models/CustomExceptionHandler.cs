@@ -20,8 +20,7 @@ namespace Hedgar.Exchanges.Frontend.MVC.Models
                 ExceptionMessage = runtimeError.Message,
                 ExceptionSource = runtimeError.StackTrace,
                 ExceptionType = runtimeError.GetType().FullName,
-                ExceptionUrl = context.HttpContext.Request.Url.OriginalString,
-                Parameters = ""
+                ExceptionUrl = context.HttpContext.Request.Url.OriginalString
             };
 
             SalvarExcecao(errorLog);

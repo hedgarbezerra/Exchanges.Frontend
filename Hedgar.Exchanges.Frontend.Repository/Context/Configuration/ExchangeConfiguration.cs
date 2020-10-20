@@ -31,7 +31,7 @@ namespace Hedgar.Exchanges.Frontend.Repository.Context.Configuration
             Property(p => p.Value)
                 .HasColumnName("EXCHANGE_VALUE")
                 .HasColumnType("DECIMAL")
-                .HasPrecision(19, 2)
+                .HasPrecision(19, 4)
                 .IsOptional();
 
             Property(p => p.DtExchange)

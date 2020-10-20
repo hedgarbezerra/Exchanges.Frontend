@@ -45,11 +45,14 @@
     <Compile Include="Business\Exchange.cs" />
     <Compile Include="Business\Ticker.cs" />
     <Compile Include="Business\User.cs" />
+    <Compile Include="DTO\Currency.cs" />
+    <Compile Include="DTO\CurrencySparkline.cs" />
+    <Compile Include="DTO\DTOUser.cs" />
+    <Compile Include="DTO\UserPreferences.cs" />
+    <Compile Include="Enumerators\TickerEnumerator.cs" />
     <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

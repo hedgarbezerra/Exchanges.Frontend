@@ -88,9 +88,9 @@ namespace Hedgar.Exchanges.Frontend.Repository.Repositories
             return dados.AsEnumerable();
         }
 
-        public void Savechanges()
+        public int Savechanges()
         {
-                this._context.SaveChanges();           
+            return this._context.SaveChanges();           
         }
         public void Dispose()
         {

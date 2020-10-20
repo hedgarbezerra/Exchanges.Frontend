@@ -19,12 +19,53 @@ namespace Hedgar.Exchanges.Frontend.MVC
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/vue").Include(
+                      "~/Scripts/vue.min.js",
+                      "~/Scripts/vee-validate-locale-pt_Br.js",
+                      "~/Scripts/vee-validate.full.min.js",
+                      "~/Scripts/axios.min.js",
+                      "~/Scripts/vue-spinners.umd.min.js",
+                      "~/Scripts/vue-infinite-loading.js",
+                      "~/Scripts/vue-toasted.min.js"
+                      ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/materialdesign").Include(
+                   "~/Scripts/popper.min.js",
+                   "~/Scripts/bootstrap-material-design.min.js",
+                   "~/Scripts/material-kit.min.js"
+                   ));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                      "~/Content/js/main.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+                      "~/Scripts/moment-with-locales.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/currency").Include(
+                      "~/Scripts/currency.min.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/chart").Include(
+                      "~/Scripts/Chart.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            
+
+            bundles.Add(new StyleBundle("~/Content/vue-select").Include(
+                      "~/Content/css/vue-select.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/vue-select").Include(
+                      "~/Scripts/vue-select.js"));
+
+            bundles.Add(new StyleBundle("~/Content/animatecss").Include(
+                     "~/Content/css/animate.css"));
+
+            bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
+                    "~/Content/css/all.css"));
+
+            bundles.Add(new StyleBundle("~/Content/materialdesign").Include(
+                     "~/Content/css/material-kit.min.css"));
         }
     }
 }

@@ -99,7 +99,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
         }
 
 
-        public T Get<T>(string url, List<KeyValuePair<string, object>> param = null)
+        public T Get<T>(string url, List<KeyValuePair<string, string>> param = null)
         {
             var request = new RestRequest(url, Method.GET, DataFormat.Json);
 

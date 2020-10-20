@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Crypto</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/materialdesign")
+    @Styles.Render("~/Content/animatecss")
+    @Styles.Render("~/Content/fontawesome")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/vue")
+    @Scripts.Render("~/bundles/materialdesign")
+    @Scripts.Render("~/bundles/main")
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div id="vueApp" v-cloak>
+        <div class="loader-holder" v-if="isLoading">
+            <pacman-loader class="my-loader" :color="'#bada55'" :loading="isLoading" :size="80" :sizeUnit="'px'"></pacman-loader>
+        </div>
+        <div class="container">
+            @RenderBody()
+            @Html.Partial("~/Views/Shared/_Footer.cshtml")
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

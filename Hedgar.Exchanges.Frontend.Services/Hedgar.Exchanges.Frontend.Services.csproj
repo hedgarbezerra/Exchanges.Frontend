@@ -35,6 +35,7 @@
       <HintPath>..\packages\RestSharp.106.11.2\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +48,7 @@
   <ItemGroup>
     <Compile Include="API\RequestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\ErrorLogService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
@@ -58,6 +60,10 @@
     <ProjectReference Include="..\Hedgar.Exchanges.Frontend.Repository\Hedgar.Exchanges.Frontend.Repository.csproj">
       <Project>{3f0d6930-673a-4e91-a474-a62a6eb858f2}</Project>
       <Name>Hedgar.Exchanges.Frontend.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hedgar.Exchanges.Frontend.Utils\Hedgar.Exchanges.Frontend.Utils.csproj">
+      <Project>{D0605774-3196-4D0F-B33E-628AC96C6722}</Project>
+      <Name>Hedgar.Exchanges.Frontend.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
