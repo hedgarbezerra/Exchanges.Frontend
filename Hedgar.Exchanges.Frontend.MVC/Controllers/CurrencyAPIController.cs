@@ -1,7 +1,7 @@
 ﻿using Hedgar.Exchanges.Frontend.Domain.DTO;
+using Hedgar.Exchanges.Frontend.Domain.Enumerators;
 using Hedgar.Exchanges.Frontend.MVC.Models;
 using Hedgar.Exchanges.Frontend.Services.Services;
-using LazyCache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,31 +13,37 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 {
     [RoutePrefix("v1/api/currencies")]
     [Authorize]
-    public class CurrencyAPIController : ApiController
+    public class CurrencyAPIController : BaseAPIController
     {
-        private int cacheExpirationHours = 0;
-        private int cacheExpirationMinutes = 2;
-        private int cacheExpirationSeconds = 0;
-
         [HttpGet]
-        [Route("all")]
+        [Route("list")]
         public IHttpActionResult Curriencies(string ids = "")
         {
             try
             {
-                IAppCache cache = new CachingService();
-
                 var currencyService = new CurrencyService();
-                Func<List<Currency>> getCurrenciesFunc = () => currencyService.GetCurrencies(ids).ToList();
 
-                var cachedCurrencies = cache.GetOrAdd("currencies", getCurrenciesFunc, new TimeSpan(cacheExpirationHours, cacheExpirationMinutes, cacheExpirationSeconds));
+                if (string.IsNullOrEmpty(ids))
+                {
+                    var enumList = Enum.GetValues(typeof(TickerEnumerator)).Cast<TickerEnumerator>().ToList();
 
-                // return Ok(currencyService.GetCurrencies(ids));
-                return Ok(cachedCurrencies);
+                    ids = string.Join(",", enumList);
+                }                    
+
+                var currenciess =  currencyService.GetCurrencies(ids).ToList();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Currencies listed successfuly",
+                   data = currenciess
+                });
 
             }
             catch (Exception ex)
             {
+                LogException(ex);
+
                 return InternalServerError(ex);
             }
         }
@@ -49,19 +55,25 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
         {
             try
             {
-                IAppCache cache = new CachingService();
-
                 var currencyService = new CurrencyService();
-                Func<List<Currency>> getCurrenciesFunc = () => currencyService.GetCurrencies(ids).ToList();
 
-                var cachedCurrencies = cache.GetOrAdd("currencies", getCurrenciesFunc, new TimeSpan(cacheExpirationHours, cacheExpirationMinutes, cacheExpirationSeconds));
+                var start = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
+                var end = DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm:ssZ");
 
-                // return Ok(currencyService.GetCurrencies(ids));
-                return Ok(cachedCurrencies);
+                var sparkLine = currencyService.GetCurrencySparklines(ids, start, end).ToList();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Currency sparkline listed successfuly",
+                    data = sparkLine
+                });
 
             }
             catch (Exception ex)
             {
+                LogException(ex);
+
                 return InternalServerError(ex);
             }
         }

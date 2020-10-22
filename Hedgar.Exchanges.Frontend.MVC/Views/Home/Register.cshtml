@@ -3,5 +3,91 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<h2>Register</h2>
+<div class="row mt-4">
+    <div class="col-lg-5 offset-lg-4 col-sm-8 offset-sm-2 ol-xs-6 offset-xs-3">
+        <div class="card card-nav-tabs">
+            <div class="card-header text-center card-header-primary">
+                <h1>Sign up</h1>
+            </div>
+            <div class="card-body">
+                <validation-observer ref="formSignup" >
+                    <form id="formSignup"  v-on:submit.prevent="validateSignupForm" novalidate>
+                        
+                        <validation-provider name="name" vid="userName" rules="required" v-slot="{ errors }"> 
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="userName">name</label>
+                                <input placeholder="type your name" class="form-control" id="userName" v-model="user.name" type="text" v-bind:class="{'has-error': errors[0]}">
+                                <span class="form-control-feedback">
+                                    <i class="material-icons">account_circle</i>
+                                </span>
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>
+                        </validation-provider>
 
+                        <validation-provider name="e-mail" vid="userEmail" rules="required|email" v-slot="{ errors }"> 
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="userEmail">e-mail</label>
+                                <input placeholder="type your e-mail" class="form-control" id="userEmail" v-model="user.email" type="text" v-bind:class="{'has-error': errors[0]}">
+                                <span class="form-control-feedback">
+                                    <i class="material-icons">alternate_email</i>
+                                </span>
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>
+                        </validation-provider>
+
+                        <validation-provider name="date of birth" vid="dtBirth" rules="required|dates" v-slot="{ errors }"> 
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="dtBirth">date of birth</label>
+                                <input class="form-control" id="dtBirth" v-model="user.dtBirth" type="date" v-bind:class="{'has-error': errors[0]}">                               
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>
+                        </validation-provider>
+                          
+                        <validation-provider name="password" vid="userPassword" rules="required|min:8|max:20" v-slot="{ errors }"> 
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="userPassword">password</label>   
+                                <input placeholder="type your password" class="form-control" id="userPassword" v-model="user.password" 
+                                        v-bind:type="showPassword ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}">
+                                    <span class="form-control-feedback">
+                                        <i class="material-icons can-click" v-on:click="showPassword = !showPassword">{{ showPassword ? 'lock_open' : 'lock' }}</i>
+                                    </span>                                    
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>                        
+                        </validation-provider>
+
+                        <validation-provider name="password" vid="userPasswordConfirmation" rules="required|min:8|max:20|confirmed:userPassword" v-slot="{ errors }"> 
+                            <div class="form-group label-floating has-feedback" :class="{'is-focused': errors[0]}">
+                                    <label class="control-label" for="userPasswordConfirmation">confirm your password</label>   
+                                    <input placeholder="type password confirmation" class="form-control" id="userPasswordConfirmation" v-model="user.passwordConfirmation" v-bind:type="showConfirmation ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}" >
+                                        <span class="form-control-feedback">
+                                            <i class="material-icons can-click" v-on:click="showConfirmation = !showConfirmation">{{ showConfirmation ? 'lock_open' : 'lock' }}</i>
+                                        </span>                                    
+                                    <span class="has-error">{{ errors[0] }}</span>
+                            </div>
+                        </validation-provider>
+
+                        <div class="row">
+                            <div class="col">
+                                <a  href="@Url.Action("Login", "Home")">Login</a>
+                                
+                            </div>  
+                            <div class="col">
+                                <button class="btn btn-primary btn-fab btn-fab-mini btn-round float-right" type="submit">
+                                    <i class="material-icons">person_add_alt_1</i>
+                                </button>      
+                            </div>                    
+                        </div>           
+                    </form>
+                </validation-observer>
+            </div>
+            <div class="card-footer text-center text-muted">
+                Our little secret
+            </div>
+        </div>
+    </div>  
+</div>  
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/register")
+}

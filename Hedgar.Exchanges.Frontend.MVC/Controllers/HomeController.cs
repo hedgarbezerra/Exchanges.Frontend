@@ -7,7 +7,7 @@ using System.Web.Security;
 
 namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : BaseMVCController
     {
         public ActionResult Index()

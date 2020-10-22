@@ -61,8 +61,8 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
         {
             var ctxUser = repo.Listar(x => x.Email == user.Email).FirstOrDefault();
 
-            var mostTickerFrom = ctxUser.Exchanges.GroupBy(i => i.TickerFrom).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
-            var mostTickerTo = ctxUser.Exchanges.GroupBy(i => i.TickerTo).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
+            var mostTickerFrom = ctxUser.Exchanges.Count > 0 ? ctxUser.Exchanges.GroupBy(i => i.TickerFrom).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First() : "";
+            var mostTickerTo = ctxUser.Exchanges.Count > 0 ? ctxUser.Exchanges.GroupBy(i => i.TickerTo).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First() : "";
 
             return new UserPreferences
             {
@@ -73,8 +73,8 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
 
         public UserPreferences GetUserPreferences(List<Exchange> exchanges)
         {
-            var mostTickerFrom = exchanges.GroupBy(i => i.TickerFrom).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
-            var mostTickerTo = exchanges.GroupBy(i => i.TickerTo).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
+            var mostTickerFrom = exchanges.Count > 0 ? exchanges.GroupBy(i => i.TickerFrom).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First() : "";
+            var mostTickerTo = exchanges.Count > 0 ?  exchanges.GroupBy(i => i.TickerTo).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First() : "";
 
             return new UserPreferences
             {

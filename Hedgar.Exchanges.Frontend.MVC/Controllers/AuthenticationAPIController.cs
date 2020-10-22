@@ -1,5 +1,6 @@
 ﻿using Hedgar.Exchanges.Frontend.Domain.Business;
 using Hedgar.Exchanges.Frontend.Domain.DTO;
+using Hedgar.Exchanges.Frontend.Domain.Models;
 using Hedgar.Exchanges.Frontend.Services.Services;
 using Microsoft.Ajax.Utilities;
 using System;
@@ -14,7 +15,7 @@ using System.Web.Security;
 namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 {
     [RoutePrefix("v1/api/authentication")]
-    public class AuthenticationAPIController : ApiController
+    public class AuthenticationAPIController : BaseAPIController
     {
         [HttpPost]
         [Route("signup")]
@@ -31,7 +32,7 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
                 {
                     var response = new 
                     {
-                        message = "Sign up successfully.",
+                        message = "Signed up successfully.",
                         success = true
                     };
 
@@ -43,12 +44,13 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
             }
             catch (Exception ex)
             {
+                LogException(ex);
                 return InternalServerError(ex);
             }
         }
 
         [HttpPost]
-        [Route("Login")]
+        [Route("login")]
         public IHttpActionResult Login([FromBody] User user)
         {
             try
@@ -61,9 +63,12 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
                 if (loginSuccess)
                 {
                     var userPreferences = userService.GetUserPreferences(auhenticatedUser.Exchanges);
-
-                    WriteCookie("userpreference-tickerfrom", userPreferences.TickerFrom);
-                    WriteCookie("userpreference-tickerto", userPreferences.TickerTo);
+                    
+                    if(!string.IsNullOrEmpty(userPreferences.TickerFrom))
+                        WriteCookie("userpreference-tickerfrom", userPreferences.TickerFrom);
+                    
+                    if (!string.IsNullOrEmpty(userPreferences.TickerTo))
+                        WriteCookie("userpreference-tickerto", userPreferences.TickerTo);
                     
                     FormsAuthentication.SetAuthCookie(auhenticatedUser.Email, true);
 
@@ -84,41 +89,11 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
             }
             catch (Exception ex)
             {
+                LogException(ex);
+
                 return InternalServerError(ex);
             }
 
         }
-
-
-
-
-        protected void WriteCookie(string cookieName, string value)
-        {
-            var exp = new TimeSpan(0, 12, 0, 0);
-
-            var cookie = new HttpCookie(cookieName)
-            {
-                Value = value,
-                Expires = DateTime.Now + exp
-            };
-
-            HttpContext.Current.Response.Cookies.Add(cookie);
-        }
-
-        private void RemoveCookies()
-        {
-            string[] allDomainCookes = HttpContext.Current.Request.Cookies.AllKeys;
-
-            foreach (string domainCookie in allDomainCookes)
-            {
-                var expiredCookie = new HttpCookie(domainCookie)
-                {
-                    Expires = DateTime.Now.AddDays(-7),
-                };
-                HttpContext.Current.Response.Cookies.Add(expiredCookie);
-            }
-            HttpContext.Current.Request.Cookies.Clear();
-        }
-
     }
 }

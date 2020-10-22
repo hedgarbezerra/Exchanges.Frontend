@@ -15,7 +15,6 @@ namespace Hedgar.Exchanges.Frontend.Repository.Context
         public DataContext()
             : base("name=DbConnection")
         {
-
         }
         protected override void OnModelCreating(DbModelBuilder builder)
         {

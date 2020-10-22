@@ -3,5 +3,63 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<h2>Login</h2>
+<div class="row mt-4">
+    <div class="col-lg-5 offset-lg-4 col-sm-8 offset-sm-2 ol-xs-6 offset-xs-3">
+        <div class="card card-nav-tabs">
+            <div class="card-header text-center card-header-primary">
+                <h1>Login</h1>
+            </div>
+            <div class="card-body">
+                <validation-observer ref="formLogin">
+                    <form id="formLogin" v-on:submit.prevent="validateLoginForm" novalidate>
 
+                        <validation-provider name="e-mail" vid="userEmail" rules="required|email" v-slot="{ errors }"> 
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="userEmail">e-mail</label>
+                                <input placeholder="type your e-mail" class="form-control" id="userEmail" v-model="user.email" type="text" v-bind:class="{'has-error': errors[0]}">
+                                <span class="form-control-feedback">
+                                    <i class="material-icons">alternate_email</i>
+                                </span>
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>
+                        </validation-provider>
+
+                        <validation-provider name="password" vid="userPassword" rules="required|min:8|max:20" v-slot="{ errors }"> 
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="userPassword">password</label>   
+                                <input placeholder="type your password" class="form-control" id="userPassword" v-model="user.password" 
+                                        v-bind:type="showPassword ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}">
+                                    <span class="form-control-feedback">
+                                        <i class="material-icons can-click" v-on:click="showPassword = !showPassword">{{ showPassword ? 'lock_open' : 'lock' }}</i>
+                                    </span>                                    
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>                        
+                        </validation-provider>
+
+                        <div class="row">
+                            <div class="col">
+                                <a href="@Url.Action("Register", "Home")">Sign up</a>
+
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary btn-fab btn-fab-mini btn-round float-right" type="submit">
+                                    <i class="material-icons">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </validation-observer>
+            </div>
+            <div class="card-footer text-center text-muted">
+                Our little secret
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/login")
+}

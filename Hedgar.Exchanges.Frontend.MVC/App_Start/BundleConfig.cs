@@ -20,7 +20,7 @@ namespace Hedgar.Exchanges.Frontend.MVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/vue").Include(
-                      "~/Scripts/vue.min.js",
+                      "~/Scripts/vue.js",
                       "~/Scripts/vee-validate-locale-pt_Br.js",
                       "~/Scripts/vee-validate.full.min.js",
                       "~/Scripts/axios.min.js",
@@ -47,6 +47,18 @@ namespace Hedgar.Exchanges.Frontend.MVC
             
             bundles.Add(new ScriptBundle("~/bundles/chart").Include(
                       "~/Scripts/Chart.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/login").Include(
+                      "~/Content/js/login.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/home").Include(
+                      "~/Content/js/home.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/exchanges").Include(
+                      "~/Content/js/exchanges.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/register").Include(
+                      "~/Content/js/register.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css"));

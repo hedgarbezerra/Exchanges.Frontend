@@ -36,7 +36,7 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
                 param.Add(new KeyValuePair<string, string>("ids", ids));
 
             if (string.IsNullOrEmpty(start))
-                start = $"{DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd'T'HH:mm:ssZ")}";
+                start = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
 
             param.Add(new KeyValuePair<string, string>("start", start));
 

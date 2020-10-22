@@ -1,16 +1,14 @@
-﻿moment.locale('pt-br');
-Vue.use(VueInfiniteLoading);
-VeeValidate.localize('pt_br', localeVee);
-VeeValidate.setInteractionMode('eager');
+﻿moment.locale('en-us');
 Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
 Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
+VeeValidate.setInteractionMode('eager');
 
 const REQUESTMETHOD = Object.freeze({ "GET": 1, "POST": 2, "PUT": 3, "DELETE": 4 });
 
 const TOASTMETHOD = Object.freeze({ "ERROR": 1, "SHOW": 2, "SUCCESS": 3, "INFO": 4 });
 
 const toastOptions = {
-    position: 'bottom-right',
+    position: 'top-right',
     duration: 3000,
     keepOnHover: true,
     iconPack: 'material',
@@ -94,4 +92,17 @@ async function fazerRequest(url = "", metodo = REQUESTMETHOD, dados = Object) {
 
     }
     return dados;
+}
+
+function customValidators(){
+    VeeValidate.extend('dates', {
+        validate: (value) => {
+            let inputDate = moment(value);
+            let today = moment();
+            
+            return inputDate.isBefore(today) && inputDate.isValid()
+        },
+        message: `The date must be valid and before ${moment().format('YYYY-MM-DD')}`
+        
+      });
 }

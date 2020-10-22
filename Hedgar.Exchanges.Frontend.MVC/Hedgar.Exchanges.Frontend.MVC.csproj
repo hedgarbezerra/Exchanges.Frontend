@@ -56,9 +56,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="LazyCache, Version=2.1.2.160, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LazyCache.2.1.2\lib\netstandard2.0\LazyCache.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -177,6 +174,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthenticationAPIController.cs" />
+    <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\BaseMVCController.cs" />
     <Compile Include="Controllers\CurrencyAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
