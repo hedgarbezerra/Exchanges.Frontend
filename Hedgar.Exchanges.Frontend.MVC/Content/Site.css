@@ -32,6 +32,15 @@ footer {
     padding-top: 60px; 
 }
 
+.select-img {
+    max-width: 25px !important;
+    max-width: 25px !important;
+}
+
+.vs__dropdown-toggle.has-error{
+    border: 2px solid #ab47bc !important;
+}
+
 .my-loader {
     position: fixed !important;
     top: 40%;

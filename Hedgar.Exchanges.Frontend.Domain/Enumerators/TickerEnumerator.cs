@@ -9,6 +9,7 @@ namespace Hedgar.Exchanges.Frontend.Domain.Enumerators
     public enum TickerEnumerator
     {
         BCH,
+        BTC,
         BNB,
         LINK,
         DOT,

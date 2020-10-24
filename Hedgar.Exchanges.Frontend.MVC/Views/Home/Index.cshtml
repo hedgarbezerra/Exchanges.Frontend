@@ -2,8 +2,88 @@
     ViewBag.Title = "Home Page";
 }
 
+<validation-observer ref="formExchange" >
+    <form id="formExchange"  v-on:submit.prevent="validateExchangeform" novalidate>
+        <div class="row mt-5">            
+            <div class="col-lg-6 col-sm-12">
+                <label class="control-label" for="cmbExchangeFrom">from</label>
+                <validation-provider name="from" vid="cmbExchangeFrom" mode="aggressive" :rules="{ required: true, different: exchangeTo }" v-slot="{ errors }"> 
+                    <v-select id="cmbExchangeFrom" label="name"  :options="tickers" v-model="exchangeFrom" v-bind:class="{'has-error': errors[0]}">
+                        <template v-slot:option="ticker">
+                            <img :src="ticker.logo_url" class="select-img"></img>
+                            {{ `${ticker.id } (${ticker.name })`}}
+                        </template>
 
+                        <template slot="selected-option" slot-scope="ticker">
+                            {{ `${ticker.id } (${ticker.name })`}}
+                        </template>
+
+                        <template v-slot:no-options="{ search, searching }">
+                            <template v-if="searching">
+                            No results found for <em>{{ search }}</em>.
+                            </template>
+                        </template>
+                    </v-select>
+                    <span class="has-error">{{ errors[0] }}</span>
+                    <p v-if="exchangeFrom != '' && exchangeFrom != null"> last updated on {{ formatedExchangeFrom }}</p>
+                </validation-provider>
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <label class="control-label" for="cmbExchangeTo">to</label>
+                <validation-provider name="from" vid="cmbExchangeTo" mode="aggressive" :rules="{ required: true, different: exchangeFrom }" v-slot="{ errors }"> 
+                    <v-select id="cmbExchangeTo" label="name" :options="tickers" v-model="exchangeTo" v-bind:class="{'has-error': errors[0]}">
+                        <template v-slot:option="ticker">
+                            <img :src="ticker.logo_url" class="select-img"></img>
+                            {{ `${ticker.id } (${ticker.name })`}}
+                        </template>
+
+                        <template slot="selected-option" slot-scope="ticker">
+                            {{ `${ticker.id } (${ticker.name })`}}
+                        </template>
+
+                        <template v-slot:no-options="{ search, searching }">
+                            <template v-if="searching">
+                            No results found for <em>{{ search }}</em>.
+                            </template>
+                        </template>
+                    </v-select><span class="has-error">{{ errors[0] }}</span>
+                    <p v-if="exchangeTo!= '' && exchangeTo != null"> last updated on {{ formatedExchangeTo }}</p>
+                </validation-provider>
+            </div>
+        </div>      
+
+        <div class="row mt-2">
+            <div class="col-lg-6 col-sm-12">
+                <validation-provider name="value" vid="txtInputValue" rules="required|min_value:1" v-slot="{ errors }"> 
+                    <div class="form-group label-floating has-feedback">
+                        <label class="control-label" for="txtInputValue">value</label>
+                        <money v-model="exchangeValue" id="txtInputValue" class="form-control" :disabled="!formFilled" :class="{'has-error': errors[0]}"></money>
+                        <!-- <input placeholder="type the amount" class="form-control" id="txtInputValue" v-model="exchangeValue" type="text" v-bind:class="{'has-error': errors[0]}"> -->
+                        <span class="form-control-feedback">
+                            <i class="material-icons">attach_money</i>
+                        </span>
+                        <span class="has-error">{{ errors[0] }}</span>
+                    </div>
+                </validation-provider>
+            </div>
+
+            <div class="col-lg-3 col-sm-12">
+                <label for="exchangeConversion" class="control-label">converted value</label>
+                <h4 id="exchangeConversion" v-if="formFilled && exchangeConvertedValue> 0 "> {{ exchangeConvertedValue }}</h4>
+            </div>
+
+            <div class="col-lg-3 col-sm-12">
+                <button class="btn btn-primary float-right mt-lg-4" type="submit" :disabled="!formFilled">
+                    <i class="fas fa-exchange-alt"></i>
+                    Exchange
+                </button>   
+            </div>
+        </div> 
+    </form>
+</validation-observer>
 
 @section scripts{
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
     @Scripts.Render("~/bundles/home")
 }

@@ -11,8 +11,11 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
 {
     public class CurrencyService
     {
-        private readonly string _APIKey = ConfigurationManager.AppSettings["nomicsAPIKey"];
-        private const string _baseUrl = "https://api.nomics.com/v1";
+        private readonly string _NomicsAPIKey = ConfigurationManager.AppSettings["nomicsAPIKey"];
+        private const string _nomicsBaseUrl = "https://api.nomics.com/v1";
+
+        private readonly string _coinAPIKey = ConfigurationManager.AppSettings["coinAPIKey"];
+        private const string _coinBaseUrl = "https://rest.coinapi.io/v1";
 
         public ICollection<Currency> GetCurrencies(string tickerIds = "")
         {
@@ -23,7 +26,7 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
 
             var client = new RequestClient();
 
-            var currencies = client.Get<List<Currency>>($"{_baseUrl}/currencies/ticker?key={_APIKey}&interval=0h", param);
+            var currencies = client.Get<List<Currency>>($"{_nomicsBaseUrl}/currencies/ticker?key={_NomicsAPIKey}&interval=1d", param);
 
             return currencies;
         }
@@ -46,9 +49,30 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
 
             var client = new RequestClient();
 
-            var sparklines = client.Get<List<CurrencySparkline>>($"{_baseUrl}/currencies/sparkline?key={_APIKey}", param);
+            var sparklines = client.Get<List<CurrencySparkline>>($"{_nomicsBaseUrl}/currencies/sparkline?key={_NomicsAPIKey}", param);
 
             return sparklines;
+        }
+
+        public CurrencyRateData GetAllCurrencyRates(string id)
+        {
+            var param = new List<KeyValuePair<string, string>>();
+
+            var client = new RequestClient();
+
+            var currencyRates = client.Get<CurrencyRateData>($"{_coinBaseUrl}/exchangerate/{id}?apikey={_coinAPIKey}", param);
+
+            return currencyRates;
+        }
+        public CurrencyRate GetSpecificCurrencyRates(string idFrom, string idTo)
+        {
+            var param = new List<KeyValuePair<string, string>>();
+
+            var client = new RequestClient();
+
+            var currencyRate = client.Get<CurrencyRate>($"{_coinBaseUrl}/exchangerate/{idFrom}/{idTo}?apikey={_coinAPIKey}", param);
+
+            return currencyRate;
         }
     }
 }

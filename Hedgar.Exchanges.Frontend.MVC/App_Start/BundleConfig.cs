@@ -26,7 +26,8 @@ namespace Hedgar.Exchanges.Frontend.MVC
                       "~/Scripts/axios.min.js",
                       "~/Scripts/vue-spinners.umd.min.js",
                       "~/Scripts/vue-infinite-loading.js",
-                      "~/Scripts/vue-toasted.min.js"
+                      "~/Scripts/vue-toasted.min.js",
+                      "~/Scripts/vue-money.js"
                       ));
 
 

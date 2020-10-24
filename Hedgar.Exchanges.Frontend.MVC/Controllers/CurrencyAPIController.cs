@@ -12,7 +12,6 @@ using System.Web.Http;
 namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 {
     [RoutePrefix("v1/api/currencies")]
-    [Authorize]
     public class CurrencyAPIController : BaseAPIController
     {
         [HttpGet]
@@ -67,6 +66,61 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
                     success = true,
                     message = "Currency sparkline listed successfuly",
                     data = sparkLine
+                });
+
+            }
+            catch (Exception ex)
+            {
+                LogException(ex);
+
+                return InternalServerError(ex);
+            }
+        }
+
+
+        [Route("rates")]
+        [HttpGet]
+        public IHttpActionResult Rates(string id)
+        {
+            try
+            {
+
+                var currencyService = new CurrencyService();
+
+                var exchangeRates = currencyService.GetAllCurrencyRates(id);
+
+                return Ok(new
+                {
+                    data = exchangeRates,
+                    success = true,
+                    message = $"Currency exchange rate listed."
+                });
+
+            }
+            catch (Exception ex)
+            {
+                LogException(ex);
+
+                return InternalServerError(ex);
+            }
+        }
+
+        [Route("specificrate")]
+        [HttpGet]
+        public IHttpActionResult SpecificRates(string idFrom, string idTo)
+        {
+            try
+            {
+
+                var currencyService = new CurrencyService();
+
+                var exchangeRates = currencyService.GetSpecificCurrencyRates(idFrom, idTo);
+
+                return Ok(new
+                {
+                    data = exchangeRates,
+                    success = true,
+                    message = $"Currency exchange rate listed."
                 });
 
             }

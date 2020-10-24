@@ -177,6 +177,7 @@
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\BaseMVCController.cs" />
     <Compile Include="Controllers\CurrencyAPIController.cs" />
+    <Compile Include="Controllers\ExchangeAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -323,6 +324,7 @@
     <Content Include="Scripts\vee-validate-locale-pt_Br.js" />
     <Content Include="Scripts\vee-validate.full.min.js" />
     <Content Include="Scripts\vue-infinite-loading.js" />
+    <Content Include="Scripts\vue-money.js" />
     <Content Include="Scripts\vue-select.js" />
     <Content Include="Scripts\vue-spinners.umd.min.js" />
     <Content Include="Scripts\vue-toasted.min.js" />

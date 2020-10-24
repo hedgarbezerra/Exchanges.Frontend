@@ -8,7 +8,7 @@ const REQUESTMETHOD = Object.freeze({ "GET": 1, "POST": 2, "PUT": 3, "DELETE": 4
 const TOASTMETHOD = Object.freeze({ "ERROR": 1, "SHOW": 2, "SUCCESS": 3, "INFO": 4 });
 
 const toastOptions = {
-    position: 'top-right',
+    position: 'bottom-right',
     duration: 3000,
     keepOnHover: true,
     iconPack: 'material',
@@ -102,7 +102,16 @@ function customValidators(){
             
             return inputDate.isBefore(today) && inputDate.isValid()
         },
-        message: `The date must be valid and before ${moment().format('YYYY-MM-DD')}`
-        
+        message: `The date must be valid and before ${moment().format('YYYY-MM-DD')}`        
+    });
+
+    VeeValidate.extend('different', {
+        params: ['otherInput'],
+        validate: (value, { otherInput }) => { 
+            if(!!!otherInput)
+                return true;    
+            return value.id != otherInput.id; 
+        },
+        message: `The currencies ticker must be different.`        
       });
 }

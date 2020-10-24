@@ -33,7 +33,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
 
         public T Post<T>(string url, object param)
@@ -48,7 +48,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
 
         public T Post<T>(string url, List<KeyValuePair<string, object>> param)
@@ -64,7 +64,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
 
         public T Put<T>(string url, object param)
@@ -79,7 +79,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
 
         public T Put<T>(string url, List<KeyValuePair<string, object>> param)
@@ -95,7 +95,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
 
 
@@ -115,7 +115,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
 
 
@@ -130,7 +130,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
         public async Task<T> PostAsync<T>(string url, object param)
         {
@@ -144,7 +144,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
         public async Task<T> PostAsync<T>(string url, List<KeyValuePair<string, object>> param)
         {
@@ -159,7 +159,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
                 return new JsonDeserializer().Deserialize<T>(response);
             }
 
-            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço {response.ResponseUri}");
+            throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
         }
 
         public void AdicionarCookies(List<Cookie> cookies)
