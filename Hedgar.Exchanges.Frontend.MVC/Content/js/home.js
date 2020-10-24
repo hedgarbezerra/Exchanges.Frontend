@@ -56,7 +56,7 @@
             fazerRequest(`${window.location.origin}/v1/api/currencies/specificrate?idFrom=${this.exchangeFrom.id}&idTo=${this.exchangeTo.id}`, REQUESTMETHOD.GET)
                 .then(({ data, message, success }) =>{
              
-                    this.exchangeToRate = data.rate;
+                    this.exchangeToRate = data;
 
                     toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
                     this.isLoading = false;
@@ -66,20 +66,50 @@
                     this.isLoading = false;
                 })
         },
+        loadChart(){
+            var ctx = document.getElementById('ratesChart');
 
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
     },
      computed:{
-        formatedExchangeTo(){
-            let time = (this.exchangeTo != null && this.exchangeTo.price_timestamp != undefined) ? this.exchangeTo.price_timestamp : moment().format('YYYY-MM-DD');
-            
-            return moment(time).fromNow();
-            //return moment(time).format('MM/DD/YYYY [at] HH:MM')
-        },
-        formatedExchangeFrom(){
-            let time = (this.exchangeFrom != null && this.exchangeFrom.price_timestamp != undefined) ? this.exchangeFrom.price_timestamp : moment().format('YYYY-MM-DD');
-
-            return moment(time).fromNow();
-            //return moment(time).format('MM/DD/YYYY [at] HH:MM')
+        formatedExchangeRateDate(){            
+            return  moment(this.exchangeToRate.time).fromNow();
         },        
         formFilled(){
             return this.exchangeFrom != null && this.exchangeTo != null && this.exchangeFrom != "" && this.exchangeTo != "" && this.exchangeFrom != this.exchangeTo;
@@ -92,7 +122,7 @@
             }
         },
         exchangeValue: function(val){
-            this.exchangeConvertedValue = val * this.exchangeToRate;
+            this.exchangeConvertedValue = val * this.exchangeToRate.rate;
         }
     },
     created(){        

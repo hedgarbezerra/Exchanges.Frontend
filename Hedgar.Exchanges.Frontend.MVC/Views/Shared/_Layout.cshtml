@@ -27,9 +27,8 @@
             <bounce-loader class="my-loader" :color="'#bada55'" :loading="isLoading" :size="100" :sizeunit="'px'"></bounce-loader>
         </div>
         @RenderBody()
-        @Html.Partial("~/Views/Shared/_Footer.cshtml")
     </div>
-    
+    @Html.Partial("~/Views/Shared/_Footer.cshtml")
     @RenderSection("scripts", required: false)
 </body>
 </html>

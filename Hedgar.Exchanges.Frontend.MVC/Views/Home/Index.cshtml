@@ -25,7 +25,6 @@
                         </template>
                     </v-select>
                     <span class="has-error">{{ errors[0] }}</span>
-                    <p v-if="exchangeFrom != '' && exchangeFrom != null"> last updated on {{ formatedExchangeFrom }}</p>
                 </validation-provider>
             </div>
 
@@ -48,13 +47,12 @@
                             </template>
                         </template>
                     </v-select><span class="has-error">{{ errors[0] }}</span>
-                    <p v-if="exchangeTo!= '' && exchangeTo != null"> last updated on {{ formatedExchangeTo }}</p>
                 </validation-provider>
             </div>
         </div>      
 
         <div class="row mt-2">
-            <div class="col-lg-6 col-sm-12">
+            <div class="col-lg-4 col-sm-12">
                 <validation-provider name="value" vid="txtInputValue" rules="required|min_value:1" v-slot="{ errors }"> 
                     <div class="form-group label-floating has-feedback">
                         <label class="control-label" for="txtInputValue">value</label>
@@ -73,16 +71,30 @@
                 <h4 id="exchangeConversion" v-if="formFilled && exchangeConvertedValue> 0 "> {{ exchangeConvertedValue }}</h4>
             </div>
 
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-5 col-sm-12">
+                <label for="exchangeRate" class="control-label" v-if="formFilled && exchangeToRate != null "> unitary value</label>
+                <h4 id="exchangeRate" v-if="formFilled && exchangeToRate != null "><span class="text-muted">{{formatedExchangeRateDate }}: </span> 1 {{ exchangeFrom.id}} = {{ exchangeToRate.rate }} {{exchangeTo.id}}</h4>
+            </div>
+        </div> 
+
+        <div class="row">
+            <div class="col-12">
                 <button class="btn btn-primary float-right mt-lg-4" type="submit" :disabled="!formFilled">
                     <i class="fas fa-exchange-alt"></i>
                     Exchange
-                </button>   
+                </button>  
             </div>
-        </div> 
+        </div>
     </form>
 </validation-observer>
 
+<div class="row">
+    <div class="col-12">
+        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+            <canvas id="ratesChart"></canvas>
+        </div>
+    </div>
+</div>
 @section scripts{
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
     @Scripts.Render("~/bundles/home")

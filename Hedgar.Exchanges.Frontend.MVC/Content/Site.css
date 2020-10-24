@@ -11,16 +11,12 @@
 html, body {
     font-family: Poppins, Roboto !important;
     background-color: #f5f3ee !important;
-    /* background-image: linear-gradient(to bottom right, var(--branco), var(--amarelo)); */
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    height: 100% !important;
 }
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    position: absolute;
     width: 100%;
     background-color: #704977;
     color: white;
@@ -28,7 +24,7 @@ footer {
   }
 
 #vueApp {
-    height: 100%;
+    min-height: 100vh;
     padding-top: 60px; 
 }
 
