@@ -34,7 +34,7 @@
                     <v-select id="cmbExchangeTo" label="name" :options="tickers" v-model="exchangeTo" v-bind:class="{'has-error': errors[0]}">
                         <template v-slot:option="ticker">
                             <img :src="ticker.logo_url" class="select-img"></img>
-                            {{ `${ticker.id } (${ticker.name })`}}
+                            {{ `${ticker.id } (${ticker.name })`}} <span class="material-icons" v-if="bestExchangeRate.asset_id_quote == ticker.id" style="color: green">trending_up</span>
                         </template>
 
                         <template slot="selected-option" slot-scope="ticker">
@@ -51,13 +51,12 @@
             </div>
         </div>      
 
-        <div class="row mt-2">
+        <div class="row mt-2 mb-2">
             <div class="col-lg-4 col-sm-12">
                 <validation-provider name="value" vid="txtInputValue" rules="required|min_value:1" v-slot="{ errors }"> 
                     <div class="form-group label-floating has-feedback">
                         <label class="control-label" for="txtInputValue">value</label>
                         <money v-model="exchangeValue" id="txtInputValue" class="form-control" :disabled="!formFilled" :class="{'has-error': errors[0]}"></money>
-                        <!-- <input placeholder="type the amount" class="form-control" id="txtInputValue" v-model="exchangeValue" type="text" v-bind:class="{'has-error': errors[0]}"> -->
                         <span class="form-control-feedback">
                             <i class="material-icons">attach_money</i>
                         </span>
@@ -77,7 +76,7 @@
             </div>
         </div> 
 
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-12">
                 <button class="btn btn-primary float-right mt-lg-4" type="submit" :disabled="!formFilled">
                     <i class="fas fa-exchange-alt"></i>
@@ -88,14 +87,15 @@
     </form>
 </validation-observer>
 
-<div class="row">
+<div class="row mt-2">
     <div class="col-12">
         <div class="chart-container" style="position: relative; height:40vh; width:80vw">
             <canvas id="ratesChart"></canvas>
         </div>
     </div>
 </div>
+
+
 @section scripts{
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
     @Scripts.Render("~/bundles/home")
 }

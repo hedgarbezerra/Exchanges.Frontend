@@ -23,9 +23,17 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
 
                 var exchanges = service.GetExchanges(user);
 
+                var fixedExchanges = exchanges.Select(x => new
+                {
+                    x.TickerFrom,
+                    x.TickerTo,
+                    x.Value,
+                    x.DtExchange
+                });
+
                 return Ok(new
                 {
-                    data = exchanges,
+                    data = fixedExchanges,
                     success = true,
                     message = $"Found {exchanges.Count} exchanges."
                 });

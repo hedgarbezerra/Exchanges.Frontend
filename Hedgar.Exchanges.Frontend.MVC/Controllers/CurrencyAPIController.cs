@@ -59,7 +59,7 @@ namespace Hedgar.Exchanges.Frontend.MVC.Controllers
                 var start = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
                 var end = DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm:ssZ");
 
-                var sparkLine = currencyService.GetCurrencySparklines(ids, start, end).ToList();
+                var sparkLine = currencyService.GetCurrencySparklines(start, end, ids).ToList();
 
                 return Ok(new
                 {

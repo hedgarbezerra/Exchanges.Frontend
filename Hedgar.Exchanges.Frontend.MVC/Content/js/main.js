@@ -17,9 +17,9 @@ const toastOptions = {
 };
 
 const currencyOptions = {
-    decimal: ',',
-    precision: 4,
-    separator: '.'
+    decimal: '.',
+    precision: 6,
+    separator: ','
 };
 
 function focarEl(el = HTMLDocument) {
@@ -114,4 +114,13 @@ function customValidators(){
         },
         message: `The currencies ticker must be different.`        
       });
+}
+
+function customFilters() {
+    Vue.filter('currency', function (value) {
+        if (!value) return '';
+
+        return currency(value, { symbol : ''}).format();
+    })
+
 }
