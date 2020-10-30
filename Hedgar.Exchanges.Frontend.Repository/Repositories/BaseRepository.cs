@@ -12,14 +12,11 @@ namespace Hedgar.Exchanges.Frontend.Repository.Repositories
     public class BaseRepository<T>
         where T : class
     {
-        protected DataContext _context;
+        protected DbContext _context;
 
-        public BaseRepository(DataContext context = null)
+        public BaseRepository(DbContext context = null)
         {
-            if (context != null)
-                this._context = context;
-            else
-                this._context = new DataContext();
+                this._context = context ?? new DataContext();
         }
 
         public virtual T Inserir(T obj)
@@ -96,7 +93,7 @@ namespace Hedgar.Exchanges.Frontend.Repository.Repositories
         {
             this._context.Dispose();
         }
-        public DataContext RetornaContexto()
+        public DbContext RetornaContexto()
         {
             return this._context;
         }

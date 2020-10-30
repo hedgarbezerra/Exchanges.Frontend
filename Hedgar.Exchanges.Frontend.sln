@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hedgar.Exchanges.Frontend.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hedgar.Exchanges.Frontend.MVC", "Hedgar.Exchanges.Frontend.MVC\Hedgar.Exchanges.Frontend.MVC.csproj", "{F15ADED3-920D-4DD2-8B2B-FE9DA52794AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hedgar.Exchanges.Frontend.MVCTests", "Hedgar.Exchanges.Frontend.MVCTests\Hedgar.Exchanges.Frontend.MVCTests.csproj", "{606F6372-E541-4AF7-B2BA-13F47E701DE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F15ADED3-920D-4DD2-8B2B-FE9DA52794AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15ADED3-920D-4DD2-8B2B-FE9DA52794AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15ADED3-920D-4DD2-8B2B-FE9DA52794AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{606F6372-E541-4AF7-B2BA-13F47E701DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606F6372-E541-4AF7-B2BA-13F47E701DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606F6372-E541-4AF7-B2BA-13F47E701DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606F6372-E541-4AF7-B2BA-13F47E701DE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

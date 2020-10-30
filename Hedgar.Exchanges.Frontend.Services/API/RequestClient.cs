@@ -1,5 +1,4 @@
 ﻿using RestSharp;
-using RestSharp.Serialization.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +29,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -45,7 +44,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -61,7 +60,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -76,7 +75,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -92,7 +91,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -112,7 +111,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -127,7 +126,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -141,7 +140,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");
@@ -156,7 +155,7 @@ namespace Hedgar.Exchanges.Frontend.Services.API
 
             if (response.IsSuccessful)
             {
-                return new JsonDeserializer().Deserialize<T>(response);
+                return response.Data;
             }
 
             throw new Exception($"Houve um erro {response.StatusCode} ao tentar conectar ao endereço desejado");

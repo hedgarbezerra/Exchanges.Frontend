@@ -58,8 +58,11 @@
                 })
         },
         getExchangeRates(){ 
+            if(this.exchangeFrom == null)
+                return false;
+                
             this.isLoading = true;
-
+            
             fazerRequest(`${window.location.origin}/v1/api/currencies/rates?id=${this.exchangeFrom.id}`, REQUESTMETHOD.GET)
                 .then(({ data, message, success }) =>{
              

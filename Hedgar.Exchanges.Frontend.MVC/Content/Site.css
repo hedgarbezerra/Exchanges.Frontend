@@ -15,13 +15,18 @@ html, body {
     background-repeat: no-repeat !important;
 }
 
+#ratesChart{
+    max-height: 500px !important;
+    max-width: 1180px !important;
+}
+
 footer {
     position: absolute;
     width: 100%;
     background-color: #704977;
     color: white;
     text-align: center;
-  }
+}
 
 #vueApp {
     min-height: 100vh;

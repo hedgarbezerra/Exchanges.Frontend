@@ -1,4 +1,5 @@
 ﻿using Hedgar.Exchanges.Frontend.Domain.Business;
+using Hedgar.Exchanges.Frontend.Repository.Context;
 using Hedgar.Exchanges.Frontend.Repository.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,14 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
     {
         private readonly ExchangeRepository repo;
         private readonly UserRepository userRepo;
+        private DataContext _dbContext;
         public ExchangesService()
         {
-            repo = new ExchangeRepository();
-            userRepo = new UserRepository();
+
+            _dbContext = new DataContext();
+
+            repo = new ExchangeRepository(_dbContext);
+            userRepo = new UserRepository(_dbContext);
         }
 
         public List<Exchange> GetExchanges(string email)

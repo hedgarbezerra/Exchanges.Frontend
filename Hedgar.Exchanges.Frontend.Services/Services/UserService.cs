@@ -1,10 +1,12 @@
 ﻿using Hedgar.Exchanges.Frontend.Domain.Business;
 using Hedgar.Exchanges.Frontend.Domain.DTO;
 using Hedgar.Exchanges.Frontend.Domain.Enumerators;
+using Hedgar.Exchanges.Frontend.Repository.Context;
 using Hedgar.Exchanges.Frontend.Repository.Repositories;
 using Hedgar.Exchanges.Frontend.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +15,16 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
 {
     public class UserService
     {
-        private UserRepository repo;
-        private ExchangeRepository exchangeRepo;
+        private readonly UserRepository repo;
+        private readonly ExchangeRepository exchangeRepo;
+        private DataContext _dbContext;
 
         public UserService()
         {
-            repo = new UserRepository();
-            exchangeRepo = new ExchangeRepository();
+            _dbContext = new DataContext();
+
+            repo = new UserRepository(_dbContext);
+            exchangeRepo = new ExchangeRepository(_dbContext);
         }
 
         public bool SignUp(User user)

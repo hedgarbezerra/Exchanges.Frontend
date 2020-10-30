@@ -1,4 +1,5 @@
 ﻿using Hedgar.Exchanges.Frontend.Domain.Models;
+using Hedgar.Exchanges.Frontend.Repository.Context;
 using Hedgar.Exchanges.Frontend.Repository.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ namespace Hedgar.Exchanges.Frontend.Services.Services
     public class ErrorLogService
     {
         private readonly ErrorLogRepository repo;
+        private DataContext _dbContext;
 
         public ErrorLogService()
         {
-            this.repo = new ErrorLogRepository();
+            _dbContext = new DataContext();
+
+            this.repo = new ErrorLogRepository(_dbContext);
         }
 
         public void FazerLog(ErrorLog error)
